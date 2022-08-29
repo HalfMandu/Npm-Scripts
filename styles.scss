@@ -1,0 +1,30 @@
+$padding: 6px;
+
+nav {
+  ul {
+    margin: 0;
+    padding: $padding;
+    list-style: none;
+  }
+
+  li        {
+    display: inline-block;
+  }
+
+  a {
+    display: block;
+    padding: $padding 12px;
+    text-decoration: none;
+  }
+
+  color: tan;
+}
+
+.articles {
+  color: blue;
+}
+
+.articles > p {
+  background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%);
+  transition: width 2s, height 2s, transform 2s;
+}

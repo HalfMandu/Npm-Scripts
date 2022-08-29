@@ -1,0 +1,61 @@
+{
+	"name" : "npm-demo",
+	"version" : "1.0.0",
+	"description" : "",
+	"main" : "index.js",
+	"devDependencies" : {
+		"@babel/cli" : "^7.18.10",
+		"@babel/core" : "^7.18.13",
+		"@babel/node" : "^7.18.10",
+		"@babel/preset-env" : "^7.18.10",
+		"autoprefixer" : "^10.4.8",
+		"browser-sync" : "^2.27.10",
+		"browserslist" : "^4.21.3",
+		"clean-css-cli" : "^5.6.1",
+		"eslint" : "^8.23.0",
+		"eslint-config-airbnb" : "^19.0.4",
+		"eslint-plugin-import" : "^2.26.0",
+		"htmlhint" : "^1.1.4",
+		"htmlmin" : "^0.0.7",
+		"imagemin" : "^8.0.1",
+		"imagemin-mozjpeg" : "^10.0.0",
+		"node-sass" : "^7.0.1",
+		"rimraf" : "^3.0.2",
+		"sass-lint" : "^1.13.1",
+		"uglify-js" : "^3.17.0"
+	},
+	"scripts" : {
+		"clean" : "rimraf ./node_modules",
+		"reinstall" : "npm run clean && npm install",
+		"rebuild" : "npm run clean && npm install && npm run build",
+		"lintScss" : "sass-lint *.scss -v -q",
+		"lintHtml" : "htmlhint --config htmlhint.conf *.html",
+		"minifyHtml" : "htmlmin index.html >> dist/index.min.html",
+		"lintJs" : "eslint *.js",
+		"lintFix" : "eslint *.js --fix",
+		"uglify" : "uglifyjs *.js -m -o dist/js/app.js",
+		"compile" : "node-sass --output-style=compressed --source-map=true styles.scss styles.css",
+		"transpile" : "babel --presets @babel/preset-env *.js -d dist",
+		"prefix" : "postcss styles.css --use=autoprefixer --map=false --output=styles.css",
+		"autoprefixer" : "postcss -u autoprefixer -r dist/css/*",
+		"minify" : "cleancss --source-map --source-map-inline-sources --output styles.min.css styles.css",
+		"dev" : "npm run compile -- --watch",
+		"build" : "npm run clean && npm run compile && npm run prefix && npm run minify",
+		"imagemin2" : "imagemin images dist/images -p",
+		"imagemin1" : "imagemin images/* --out-dir=dist/img",
+		"serve" : "browser-sync start --server --files '*.html, *.css, dist/*.js'",
+		"c" : "node-sass styles.scss -o .|postcss styles.css -u autoprefixer -r",
+		"w" : "watch 'npm run c' sass",
+		"myScript": "node -e 'require(\"./index.js\").someFunction()'",
+		"test" : "echo \"Error: no test specified\" && exit 1"
+	},
+	"browserslist" : [
+		"last 4 version"
+	],
+	"author" : "SR",
+	"license" : "ISC",
+	"dependencies" : {
+		"postcss" : "^8.4.16",
+		"postcss-cli" : "^10.0.0"
+	}
+}
